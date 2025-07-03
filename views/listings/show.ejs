@@ -1,0 +1,141 @@
+<% layout("layouts/default") %>
+    <h1 class="mt-3">
+        <%= data.title %>
+    </h1>
+    <hr><br>
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-7 col-md-12">
+                <img src="<%= data.image.url %>" alt="place image" class="img-fluid rounded-4 w-100 mb-3"
+                    style="max-height: 400px; object-fit: cover;">
+            </div>
+
+            <div class="col-lg-5 col-md-12">
+                <p><i>Owner: <%= data.owner.username %></i></p>
+                <p class="text-muted">
+                    <%= data.description %>
+                </p>
+                <h5>Price: &#8377;<%= data.price.toLocaleString('en-IN') %>
+                </h5>
+                <h6>Location: <%= data.location %>
+                </h6>
+                <h6>Country: <%= data.country %>
+                </h6>
+
+                <% if (currentUser && data.owner._id.equals(currentUser._id)) { %>
+                <div class="row mt-4">
+                    <div class="col-6 mb-2">
+                        <form action="/Listings/<%= data._id %>/edit" method="get">
+                            <button class="btn btn-outline-dark w-100" type="submit">Edit</button>
+                        </form>
+                    </div>
+                    <div class="col-6 mb-2">
+                        <form action="/Listings/<%= data._id %>?_method=DELETE" method="post">
+                            <button class="btn btn-danger w-100" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+
+            <!---------------------------------------_Reviews Form_----------------------------------------------->
+            <div class="col-12 mb-3">
+                <% if (currentUser) { %>
+                <h4>Please leave a Review</h4>
+                <form method="post" action="/Listings/<%= data.id %>/reviews" novalidate class="mb-4 needs-validation">
+                    <div class="col-8 offset-1">
+                        <div class="col-6 mb-3">
+                            <label class="form-label">Rating: </label>
+                            <div class="stars" id="starRating">
+                                <i class="fa-regular fa-star" data-value="1"></i>
+                                <i class="fa-regular fa-star" data-value="2"></i>
+                                <i class="fa-regular fa-star" data-value="3"></i>
+                                <i class="fa-regular fa-star" data-value="4"></i>
+                                <i class="fa-regular fa-star" data-value="5"></i>
+                            </div>
+                            <input type="hidden" name="rating" id="ratingValue" value="0">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Comment: </label>
+                            <textarea name="comment" id="comment" class="form-control" rows="5" cols="30"
+                                required></textarea>
+                            <div class="invalid-feedback">
+                                please write some comment...
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-danger">Submit</button>
+                    </div>
+                </form>
+                <% } %>
+            </div>
+            <hr>
+
+            <!----------------------------------Reviews----------------------------------------------->
+            <h4>All reviews</h4>
+            <div class="row g-4 mb-4 mt-4">
+                <% for(review of data.reviews) { %>
+                    <div class="col-xl-6 col-md-12">
+                        <div class="card border border-2 h-100 w-100">
+                            <div class="card-body p-3">
+                                <h5 class="card-title">
+                                    <%= review.author.username %>
+                                </h5>
+
+                                <div class="card-text">
+                                    <% if (review.rating === 1) { %>
+                                        <i class="fa-solid fa-star" style="color: #ff1e00;"></i>
+                                        <% for (let i=1; i <=4; i++) { %>
+                                            <i class="fa-regular fa-star" style="color: #8b8b8b;"></i>
+                                        <% } %>
+                                    <% } else if (review.rating === 2) { %>
+                                        <i class="fa-solid fa-star" style="color: #ff7b00;"></i>
+                                        <i class="fa-solid fa-star" style="color: #ff7b00;"></i>
+                                        <% for (let i=1; i <=3; i++) { %>
+                                            <i class="fa-regular fa-star" style="color: #8b8b8b;"></i>
+                                        <% } %>
+                                    <% } else { %>
+                                        <% for (let i=1; i <=5; i++) { %>
+                                            <% if (i <= review.rating) { %>
+                                                <i class="fa-solid fa-star" style="color: gold;"></i>
+                                            <% } else { %>
+                                                <i class="fa-regular fa-star" style="color: #8b8b8b;"></i>
+                                            <% } %>
+                                        <% } %>
+                                    <% } %>
+                                </div><br>
+
+                                <p class="card-text">
+                                    <%= review.comment %>
+                                </p>
+                            </div>
+
+                            <form method="post"
+                                action="/Listings/<%= data._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                class="d-grid d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn bg-light"><i
+                                        class="fa-solid fa-trash-can"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+    <script>
+        const starElements = document.querySelectorAll('#starRating i');
+        const ratingInput = document.getElementById('ratingValue');
+
+        starElements.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                const selectedRating = index + 1;
+                ratingInput.value = selectedRating;
+
+                starElements.forEach((s, i) => {
+                    s.classList.toggle('fa-solid', i < selectedRating);
+                    s.classList.toggle('fa-regular', i >= selectedRating);
+                });
+            });
+        });
+    </script>

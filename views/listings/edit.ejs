@@ -1,0 +1,67 @@
+<% layout("layouts/default") %>
+    <h1>Editing the Details</h1>
+    <hr><br>
+
+    <form class="mb-3 needs-validation" method="post" novalidate action="/Listings/<%= data._id %>?_method=PUT" enctype="multipart/form-data">
+        <div class="row offset-1">
+            <div class="col-md-8 mb-3">
+                <label class='form-label' for="title">Title:</label>
+                <input class="form-control" type="text" id="title" name="title" value="<%= data.title %>" required>
+                <div class="valid-feedback">
+                    Title Looks Good!
+                </div>
+                <div class="invalid-feedback">
+                    Title should not be empty. Please provide a title.
+                </div>
+            </div>
+
+            <div class="col-md-8 mb-3">
+                <label class='form-label' for="description">Description:</label>
+                <textarea class="form-control" id="description" name="description"
+                    required><%= data.description %></textarea>
+                <div class="valid-feedback">
+                    Description is fine..!
+                </div>
+                <div class="invalid-feedback">
+                    Description should not be empty. Please provide a description.
+                </div>
+            </div>
+
+            <div class="col-md-8 mb-3">
+                <label class='form-label' for="location">Location:</label>
+                <input class="form-control" type="text" id="location" name="location" value="<%= data.location %>"
+                    required>
+                <div class="invalid-feedback">
+                    Location should be valid or not be Empty.
+                </div>
+            </div>
+
+            <p>Original Image</p>
+            <div class="mb-3">
+                <img src="<%= original_img %>" class="img-fluid card-img-top object-fit-cover border-0 rounded-4" style="width: 25rem;" alt="suggest_img">
+            </div>
+
+            <div class="col-md-8 mb-3">
+                <label class='form-label' for="image">Upload New Image:</label>
+                <input class="form-control" type="file" id="image" name="image" value="<%= data.image %>">
+            </div>
+
+            <div class="col-md-8 mb-3">
+                <label class='form-label' for="price">Price:</label>
+                <input class="form-control" type="number" id="price" name="price" value="<%= data.price %>" required>
+                <div class="invalid-feedback">
+                    Price should not be Empty.
+                </div>
+            </div>
+
+            <div class="col-md-8 mb-4">
+                <label class='form-label' for="country">Country:</label>
+                <input class="form-control" type="text" id="country" name="country" value="<%= data.country %>"
+                    required>
+                <div class="invalid-feedback">
+                    Country should be valid or not be Empty.
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-danger offset-1" type="submit">Edit Listing</button>
+    </form>

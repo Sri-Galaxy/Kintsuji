@@ -1,0 +1,263 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1 0 auto;
+}
+
+.container-fluid {
+  padding: 0 2vmax !important;
+}
+
+/* --------------------------------Navbar Styles------------------------------------- */
+nav {
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.1);
+  background-color: #fffdfd;
+}
+.fa-torii-gate {
+  color: #e63946;
+  font-size: 2.25vmax;
+}
+.navbar-brand span {
+  font-size: 2.25vmax;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  color: #e63946;
+}
+
+.host {
+  margin-right: 1.5rem;
+  padding: 0.25rem 1rem;
+  color: rgba(0, 0, 0, 0.65);
+  background-color: #f2f2f2;
+  border-radius: 25px;
+  transition: all 0.3s ease-in-out;
+}
+.host:hover {
+  color: black;
+  transform: scale(0.98);
+}
+
+.signup > a {
+  color: #e63946;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+/* --------------------------------Filter Styles------------------------------------- */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scrollbar-width: thin;
+}
+.filter {
+  text-decoration: none;
+  color: black;
+  opacity: 0.65;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+.filter:hover,
+.filter:focus {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+.filter i {
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+}
+.filter p {
+  font-size: 0.75rem;
+}
+
+.tax-toggle {
+  margin-top: -0.65rem;
+  text-align: center;
+  padding: 0.65rem 1rem;
+  border-radius: 25px;
+  background-color: #fff;
+  box-shadow: inset 2px 4px 6px #fff7f7, inset -2px -4px 6px #bcbcbc81;
+  transition: all 0.3s ease-in-out;
+}
+.tax-toggle:hover {
+  outline: none;
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.3));
+  text-shadow: 2px 2px 4px rgba(24, 24, 24, 0.25);
+  transform: translateY(-2px);
+}
+.form-check-input:checked {
+  border: none !important;
+  outline: 4px solid #ffbcc2 !important;
+  background-color: #e63946 !important;
+}
+
+/* --------------------------------Card Styles------------------------------------- */
+.card {
+  position: relative !important;
+  perspective: 200px !important;
+}
+.card > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.3s 0ms ease-in-out;
+}
+.card > img:hover {
+  transform-style: preserve-3d;
+  transform: rotateX(2deg) translateY(-16px);
+  filter: drop-shadow(0px 10px 8px rgba(0, 0, 0, 0.25)) brightness(0.9);
+}
+.card-title {
+  font-size: 1rem;
+}
+.card-text {
+  margin-top: -0.5rem;
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+.tax-info {
+  font-size: 0.75rem;
+  display: none;
+}
+
+/* --------------------------------Footer Styles------------------------------------- */
+.f-info {
+  flex-shrink: 0;
+  height: 10rem;
+  border: none;
+  outline: none;
+  background-color: #faf9f6;
+  background-image: url("data:image/svg+xml,%3Csvg width='1440' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 160 C 200 120, 400 180, 600 140 S 1000 160, 1440 120' fill='none' stroke='%23C6A664' stroke-width='1.5' stroke-linecap='round' /%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  padding-top: 2rem;
+}
+.f-info-socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5vmax;
+  height: 37%;
+}
+.f-info-links > a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 1.25vmax;
+}
+.f-info-links > a:hover {
+  color: black;
+  text-decoration: underline;
+}
+.fa-linkedin:hover {
+  color: #0077b5;
+  transform: scale(1.05);
+}
+.fa-facebook:hover {
+  color: #3b5998;
+  transform: scale(1.05);
+}
+.fa-instagram:hover {
+  color: transparent;
+  background-image: linear-gradient(
+    to right,
+    #feda75,
+    #fa7e1e,
+    #d62976,
+    #962fbf,
+    #4f5bd5
+  );
+  background-clip: text;
+  transform: scale(1.25);
+}
+.fa-x-twitter:hover {
+  color: black;
+  transform: scale(1.05);
+}
+
+/* --------------------------------Rating Styles------------------------------------- */
+.stars i {
+  font-size: 2rem;
+  cursor: pointer;
+  color: gray;
+  transition: color 0.2s ease-in-out;
+}
+.stars .fa-solid {
+  color: gold;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .filter {
+    min-width: 70px;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.5rem;
+  }
+  .filter i {
+    font-size: 1rem;
+  }
+  .filter p {
+    font-size: 0.7rem;
+  }
+  .tax-toggle {
+    width: 100%;
+    display: block;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0 0 0;
+    text-align: left;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters {
+    gap: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
+  .filter {
+    min-width: 60px;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.3rem;
+  }
+  .filter i {
+    font-size: 1rem;
+  }
+  .tax-toggle {
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+    margin: 0.3rem 0 0 0;
+  }
+}

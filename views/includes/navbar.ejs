@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-3" href="/Listings">
+            <i class="fa-solid fa-torii-gate"></i>
+            <span>kintsuji</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <form class="d-flex me-3" role="search" action="/Listings" method="get" style="max-width: 250px; width: 100%;">
+                <input class="form-control me-2 rounded-4" type="search" name="search" placeholder="Search listings..." aria-label="Search">
+                <button class="btn btn-danger rounded-4" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item host"><a class="nav-link" href="/Listings/new" style="font-weight: 500;">Become a
+                        host</a></li>
+            </ul>
+            <ul class="navbar-nav">
+                <% if(!currentUser) { %>
+                    <li class="nav-item2 signup"><a class="nav-link" href="/signup">Sign Up</a></li>
+                    <li class="nav-item2 login"><a class="nav-link" href="/login">Login</a></li>
+                    <% } else { %>
+                        <li class="nav-item2 logout"><a class="nav-link" href="/logout">Logout</a></li>
+                        <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>
