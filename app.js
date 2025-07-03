@@ -79,6 +79,10 @@ main()
   });
 
 //................................................._The Routes_................................................
+app.get((req, res) => {
+  res.render('listings/index.ejs');
+});
+
 //Passport Middleware Configuration.......
 app.use(passport.initialize());
 app.use(passport.session());
