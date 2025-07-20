@@ -2,7 +2,7 @@
 
 ## 📌 Overview
 
-Kintsuji is a web application inspired by the Japanese art of Kintsugi - embracing imperfections and making them beautiful. This project is a listing platform built with Express.js and MongoDB, featuring user authentication, authorization, listing management, and review systems.
+Kintsuji is a web application inspired by the Airbnb. This project is a listing platform built with Express.js and MongoDB, featuring user authentication, authorization, listing management, and review systems.
 
 [View Live Demo](https://kintsuji.onrender.com/listings)
 
