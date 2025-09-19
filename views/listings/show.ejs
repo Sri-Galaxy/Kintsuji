@@ -111,12 +111,14 @@
                                 </p>
                             </div>
 
+                            <% if (currentUser && review.author._id.equals(currentUser._id)) { %>
                             <form method="post"
                                 action="/Listings/<%= data._id %>/reviews/<%= review._id %>?_method=DELETE"
                                 class="d-grid d-md-flex justify-content-md-end">
                                 <button type="submit" class="btn bg-light"><i
                                         class="fa-solid fa-trash-can"></i></button>
                             </form>
+                            <% } %>
                         </div>
                     </div>
                     <% } %>
