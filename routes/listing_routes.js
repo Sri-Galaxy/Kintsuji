@@ -12,10 +12,8 @@ const upload = multer({ storage })
 
 //................................................._Validarion_..............................................
 const validateListing = (req, res, next) => {
-    console.log("validateListing: req.body", req.body);
     const { error } = listingSchema.validate(req.body);
     if (error) {
-        console.log("validateListing error:", error);
         const msg = error.details.map((ele) => ele.message).join(',');
         throw new customError(400, msg);
     }
@@ -28,9 +26,9 @@ router.route('/')
     .get(wrapAsync(index))
     .post(
         isLoggedIn,
-        (req, res, next) => { console.log("Before multer"); next(); },
+        (req, res, next) => { next(); },
         upload.single('image'),
-        (req, res, next) => { console.log("After multer, req.body:", req.body, "req.file:", req.file); next(); },
+        (req, res, next) => { next(); },
         validateListing,
         wrapAsync(createListing)
     );
