@@ -2,9 +2,11 @@ import Listing from '../models/schema.js';
 
 const index = async (req, res) => {
     let filter = {};
+
     if (req.query.filter) {
         filter.category = req.query.filter;
     }
+
     if (req.query.search) {
         const searchRegex = new RegExp(req.query.search, 'i');
         filter.$or = [
@@ -14,7 +16,9 @@ const index = async (req, res) => {
             { country: searchRegex }
         ];
     }
+
     const data = await Listing.find(filter);
+
     res.render('listings/index.ejs', { data });
 }
 
@@ -53,7 +57,11 @@ const createListing = async (req, res, next) => {
 
 const showListing = async (req, res) => {
     let { id } = req.params;
+
+    // The populate() method is used to populate the reviews field of the listing document with the actual review documents from the Review collection.
+    // The nested populate() is used to further populate the author field of each review with the corresponding user document from the User collection.
     const data = await Listing.findById(id).populate({path: 'reviews', populate: {path: 'author'}}).populate('owner');
+
     if (!data) {
         req.flash('error', 'Listing not found!');
         return res.redirect('/Listings');
@@ -84,13 +92,17 @@ const updateListing = async (req, res) => {
         country: country,
         image: image
     });
+
     req.flash('success', 'Listing updated successfully!');
     res.redirect(`/Listings/${id}`);
 }
 
 const deleteListing = async (req, res) => {
     let { id } = req.params;
+
     await Listing.findByIdAndDelete(id);
+    // Corrosponding reviews will be deleted by the post middleware defined in the listing schema.
+
     req.flash('success', 'Listing deleted successfully!');
     res.redirect('/Listings');
 }
